@@ -10,7 +10,7 @@ book_routes = Blueprint("book_routes", __name__)
 def list_books():
     print("REQUESTED THE BOOKS IN JSON FORMAT")
     book_records = Book.query.all()
-    books = parse_records(books_records)
+    books = parse_records(book_records)
     return jsonify(books)
 
 @book_routes.route("/books")
