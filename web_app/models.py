@@ -31,3 +31,8 @@ def parse_records(database_records):
         del parsed_record["_sa_instance_state"]
         parsed_records.append(parsed_record)
     return parsed_records 
+
+class Twitter(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    tweet = db.Column(db.String(128))
+    user = db.Column(db.String(128))

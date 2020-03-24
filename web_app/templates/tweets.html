@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <h2>Tweets Page</h2>
+
+    <p>Hello, welcome to the tweets page. Would you like to turn around?</p>
+
+    {% if tweets %}
+        <ul>
+        {% for tweet in tweets %}
+            <li>{{ tweet.tweet}}</li>
+        {% endfor %}
+        </ul>
+
+    {% else %}
+        <p>Tweets not found.</p>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <h2>New Tweet Form</h2>
+
+    <p>Hello, use the form below to create a new tweet...</p>
+
+    <form action="/tweets/create" method="POST">
+
+        <label>Tweet:</label>
+        <input type="text" name="tweet" placeholder="Tweet..." value="">
+
+        <label>User:</label>
+        <select name="user_name">
+          <option value="U1">Odysseus</option>
+          <option value="U2">Athena</option>
+          <option value="U3">Telemachus</option>
+        </select>
+
+        <button>Submit</button>
+    </form>
+
+{% endblock %}
