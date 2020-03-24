@@ -24,4 +24,3 @@ def create_tweet():
     db.session.add(new_tweet)
     db.session.commit()
     return redirect("/tweets")
-    
