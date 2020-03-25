@@ -19,7 +19,7 @@ class Twitter(db.Model):
     tweet = db.Column(db.String(128))
     user = db.Column(db.String(128))
 
-class User(db.Model):
+class User(db.Model):                                            
     id = db.Column(db.BigInteger, primary_key=True)
     screen_name = db.Column(db.String(128), nullable=False)
     name = db.Column(db.String(128))
