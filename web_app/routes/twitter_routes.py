@@ -8,10 +8,7 @@ from web_app.services.basilica_service import basilica_api_client
 
 twitter_routes = Blueprint("twitter_routes", __name__)
 
-@twitter_routes.route("/users/<screen_name>")
-def get_user(screen_name=None):
-    print(screen_name)
-
+def store_twitter_user_data(screen_name):
     api = twitter_api_client()
     twitter_user = api.get_user(screen_name)
     statuses = api.user_timeline(screen_name, tweet_mode="extended", count= 150, exclude_replies=True, include_rts=False)
@@ -30,6 +27,7 @@ def get_user(screen_name=None):
     embeddings = list(basilica_api.embed_sentences(all_tweet_texts, model="twitter"))
     print("NUMBER OF EMBEDDINGS", len(embeddings))
 
+    # TODO: explore using the zip() function maybe...
     counter = 0
     for status in statuses:
         print(status.full_text)
@@ -47,4 +45,19 @@ def get_user(screen_name=None):
         counter+=1
     db.session.commit()
 
-    return "OK"
+    return db_user, statuses
+
+
+@twitter_routes.route("/users")
+@twitter_routes.route("/users.json")
+def list_users():
+    db_users = User.query.all()
+    users = parse_records(db_users)
+    return jsonify(users)
+
+@twitter_routes.route("/users/<screen_name>")
+def get_user(screen_name=None):
+    print(screen_name)
+    db_user, statuses = store_twitter_user_data(screen_name)
+
+    return render_template("user.html", user=db_user, tweets=statuses)
