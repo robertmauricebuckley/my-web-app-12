@@ -14,10 +14,10 @@ class Book(db.Model):
 
 
 
-class Twitter(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    tweet = db.Column(db.String(128))
-    user = db.Column(db.String(128))
+# class Twitter(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     tweet = db.Column(db.String(128))
+#     user = db.Column(db.String(128))
 
 class User(db.Model):                                            
     id = db.Column(db.BigInteger, primary_key=True)
