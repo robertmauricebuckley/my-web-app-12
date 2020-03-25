@@ -13,6 +13,7 @@ tweepy = "*"
 flask = "*"
 flask-sqlalchemy = "*"
 flask-migrate = "*"
+scikit-learn = "*"
 
 [requires]
 python_version = "3.7"
