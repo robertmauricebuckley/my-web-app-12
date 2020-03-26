@@ -8,6 +8,8 @@ from web_app.routes.book_routes import book_routes
 # from web_app.routes.tweet_routes import tweet_routes
 from web_app.routes.twitter_routes import twitter_routes
 from web_app.routes.admin_routes import admin_routes
+from web_app.routes.iris_routes import iris_routes
+from web_app.routes.stats_routes import stats_routes
 
 def create_app():
     app = Flask(__name__)
@@ -21,7 +23,8 @@ def create_app():
     # app.register_blueprint(tweet_routes)
     app.register_blueprint(twitter_routes)
     app.register_blueprint(admin_routes)
-
+    app.register_blueprint(iris_routes)
+    app.register_blueprint(stats_routes)
     return app
 
 if __name__ == "__main__":
