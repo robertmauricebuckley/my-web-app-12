@@ -1,4 +1,6 @@
 # web_app/__init__.py
+import os
+from dotenv import load_dotenv
 
 from flask import Flask
 
@@ -11,10 +13,17 @@ from web_app.routes.admin_routes import admin_routes
 from web_app.routes.iris_routes import iris_routes
 from web_app.routes.stats_routes import stats_routes
 
+load_dotenv()
+
+DATATBASE_URL = os.getenv("DATABASE_URL", default="sqlite:///web_app_12.db")
+SECRET_KEY = os.getenv("SECRET_KEY", default="super secret")
+
 def create_app():
     app = Flask(__name__)
 
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///web_app_12.db"
+    app.config["SECRET_KEY"] = SECRET_KEY
+    app.config["SQLALCHEMY_DATABASE_URI"] = DATATBASE_URL
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.init_app(app)
     migrate.init_app(app,db)  
 
@@ -25,6 +34,7 @@ def create_app():
     app.register_blueprint(admin_routes)
     app.register_blueprint(iris_routes)
     app.register_blueprint(stats_routes)
+    
     return app
 
 if __name__ == "__main__":

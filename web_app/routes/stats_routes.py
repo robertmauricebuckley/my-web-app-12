@@ -4,7 +4,7 @@ from flask import Blueprint, request, jsonify, render_template
 
 from sklearn.linear_model import LogisticRegression
 
-from web_app.models.py import User, Tweet
+from web_app.models import User, Tweet
 from web_app.services.basilica_service import basilica_api_client
 
 stats_routes = Blueprint("states_routes", __name__)
